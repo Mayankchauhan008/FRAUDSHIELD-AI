@@ -163,8 +163,10 @@ X_train_scaled = feature_scaler.fit_transform(X_train_res)
 X_test_scaled = feature_scaler.transform(X_test)
 
 # Save scaler for deployment
-joblib.dump(feature_scaler, 'scaler.pkl')
-print("Scaler saved to scaler.pkl")
+import os
+os.makedirs('models', exist_ok=True)
+joblib.dump(feature_scaler, 'models/scaler.pkl')
+print("Scaler saved to models/scaler.pkl")
 
 # ─────────────────────────────────────────────
 # 4. FEATURE ENGINEERING & SELECTION
@@ -198,7 +200,10 @@ X_train_sel = pd.DataFrame(X_train_scaled, columns=X.columns)[top_features].valu
 X_test_sel = pd.DataFrame(X_test_scaled, columns=X.columns)[top_features].values
 
 # Save feature list for deployment
-joblib.dump(top_features, 'top_features.pkl')
+import os
+os.makedirs('models', exist_ok=True)
+joblib.dump(top_features, 'models/top_features.pkl')
+print(f"Top {len(top_features)} features saved to models/top_features.pkl")
 
 # ─────────────────────────────────────────────
 # 5. MODEL BUILDING (MACHINE LEARNING)
@@ -387,8 +392,10 @@ plt.savefig('ann_training_history.png', dpi=150, bbox_inches='tight')
 plt.show()
 
 # Save ANN
-ann_model.save('ann_fraud_model.h5')
-print("ANN model saved to ann_fraud_model.h5")
+import os
+os.makedirs('models', exist_ok=True)
+ann_model.save('models/ann_fraud_model.h5')
+print("ANN model saved to models/ann_fraud_model.h5")
 
 # ─────────────────────────────────────────────
 # 7. MODEL EVALUATION (COMPREHENSIVE)
@@ -568,15 +575,17 @@ Note: ANN achieves comparable or better ROC-AUC but requires
 """)
 
 # Save best model
-joblib.dump(best_xgb, 'best_model_xgb.pkl')
-joblib.dump(top_features, 'top_features.pkl')
-joblib.dump(feature_scaler, 'scaler.pkl')
+import os
+os.makedirs('models', exist_ok=True)
+joblib.dump(best_xgb, 'models/best_model_xgb.pkl')
+joblib.dump(top_features, 'models/top_features.pkl')
+joblib.dump(feature_scaler, 'models/scaler.pkl')
 
 print("Saved artifacts:")
-print("  - best_model_xgb.pkl")
-print("  - ann_fraud_model.h5")
-print("  - scaler.pkl")
-print("  - top_features.pkl")
+print("  - models/best_model_xgb.pkl")
+print("  - models/ann_fraud_model.h5")
+print("  - models/scaler.pkl")
+print("  - models/top_features.pkl")
 
 # SHAP explainability
 print("\nGenerating SHAP values for model explainability...")

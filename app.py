@@ -2,7 +2,7 @@
 ╔══════════════════════════════════════════════════════════╗
 ║   FRAUDSHIELD AI — Credit Card Fraud Detection System    ║
 ║   Run: streamlit run app.py                              ║
-║   Files needed in SAME folder as app.py:                 ║
+║   Models required in models/ folder:                      ║
 ║     • best_model_xgb.pkl                                 ║
 ║     • scaler.pkl                                         ║
 ║     • top_features.pkl                                   ║
@@ -285,9 +285,9 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def find_file(filename):
     candidates = [
+        os.path.join(BASE_DIR, "models", filename),
         os.path.join(BASE_DIR, filename),
         os.path.join(os.getcwd(), filename),
-        os.path.join(BASE_DIR, "models", filename),
         os.path.join(os.path.expanduser("~"), filename),
     ]
     for p in candidates:
