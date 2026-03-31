@@ -2,7 +2,7 @@
 ╔══════════════════════════════════════════════════════════╗
 ║   FRAUDSHIELD AI — Credit Card Fraud Detection System    ║
 ║   Run: streamlit run app.py                              ║
-║   Models required in models/ folder:                      ║
+║   Models required in models/ folder:                     ║
 ║     • best_model_xgb.pkl                                 ║
 ║     • scaler.pkl                                         ║
 ║     • top_features.pkl                                   ║
